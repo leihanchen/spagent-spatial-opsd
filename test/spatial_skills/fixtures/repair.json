@@ -1,0 +1,6 @@
+{
+  "task_family": "spatialact_repair",
+  "task_text": "Repair this synthetic scene.",
+  "public_history_text": "The last action introduced a new violation near neighboring constraints.",
+  "available_capabilities": ["observe_scene", "edit_pose"]
+}

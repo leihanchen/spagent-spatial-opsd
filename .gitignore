@@ -35,3 +35,7 @@ run_good_night.sh
 
 checkpoints
 
+# Versioned spatial skill definitions and synthetic contract fixtures.
+!skills/spatial/**/*.json
+!test/spatial_skills/fixtures/**/*.json
+

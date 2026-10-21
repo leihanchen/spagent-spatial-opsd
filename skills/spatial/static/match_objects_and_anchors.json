@@ -1,0 +1,42 @@
+{
+  "id": "match_objects_and_anchors",
+  "version": 1,
+  "kind": "static",
+  "name": "Match objects and establish anchors",
+  "when": "Canonicalized objects must be matched and placed using reference images.",
+  "task_families": [
+    "sceneactbench_layout"
+  ],
+  "trigger_terms": [
+    "object correspondence",
+    "anchor object",
+    "initial layout",
+    "match furniture"
+  ],
+  "preconditions": [],
+  "procedure": [
+    "Inspect supplied object geometry and compare distinctive visible features with the references.",
+    "Choose an object whose correspondence and location are well constrained by the supplied evidence.",
+    "Place that anchor and use reference-supported relative relationships to guide subsequent objects."
+  ],
+  "verification": [
+    "Object identities and relative arrangement remain consistent with the reference views."
+  ],
+  "failure_lessons": [
+    "Anonymous identifiers do not reveal target placement; do not infer answers from asset filenames."
+  ],
+  "required_capabilities": [
+    "observe_scene",
+    "inspect_object",
+    "edit_pose"
+  ],
+  "source_refs": [
+    "https://github.com/skill-3d/Skill-3D/blob/e379d643e9889f49cb19dd425ceee9ff00e9adee/skill3d/core/skill_normalization.py",
+    "https://www.alphaxiv.org/pdf/2607.22393"
+  ],
+  "adaptation_notes": "Adapts localization and scene decomposition to target layout; supplied inspection is current geometry only.",
+  "parent_skill_id": null,
+  "provenance_episode_ids": [],
+  "review_status": "reviewed",
+  "validation_status": "untested"
+}

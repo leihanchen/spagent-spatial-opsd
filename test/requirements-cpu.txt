@@ -1,0 +1,9 @@
+# Minimal offline unit/mock-test dependencies. No torch or model weights.
+pytest>=8,<9
+pytest-socket>=0.7,<1
+pytest-timeout>=2.3,<3
+numpy>=1.26,<3
+Pillow>=10,<13
+requests>=2.31,<3
+opencv-python-headless>=4.8,<5
+httpx>=0.27,<1

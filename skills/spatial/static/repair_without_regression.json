@@ -1,0 +1,40 @@
+{
+  "id": "repair_without_regression",
+  "version": 1,
+  "kind": "static",
+  "name": "Repair without regression",
+  "when": "An edit has addressed a violation but may have affected neighboring constraints.",
+  "task_families": [
+    "spatialact_repair"
+  ],
+  "trigger_terms": [
+    "new violation",
+    "neighboring constraints",
+    "introduced an error",
+    "repair regression"
+  ],
+  "preconditions": [],
+  "procedure": [
+    "Reinspect the original conflict in the updated observations.",
+    "Check nearby objects and boundaries that could be affected by the edited pose.",
+    "If a new violation appears, reconsider the transformation rather than treating the original repair as complete."
+  ],
+  "verification": [
+    "The original conflict is resolved and no new relevant violation is evident in available observations."
+  ],
+  "failure_lessons": [
+    "A locally successful correction can make the overall scene invalid."
+  ],
+  "required_capabilities": [
+    "observe_scene",
+    "edit_pose"
+  ],
+  "source_refs": [
+    "https://www.alphaxiv.org/pdf/2605.31148"
+  ],
+  "adaptation_notes": "Original verification procedure tailored to scene repair; no private collision oracle.",
+  "parent_skill_id": null,
+  "provenance_episode_ids": [],
+  "review_status": "reviewed",
+  "validation_status": "untested"
+}

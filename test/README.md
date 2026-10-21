@@ -1,3 +1,51 @@
+## Required CPU PR checks
+
+Every pull request runs `.github/workflows/cpu-tests.yml` on GitHub-hosted Ubuntu
+with Python 3.10 and 3.12. `CPU tests required` succeeds only if both matrix jobs
+succeed. The workflow has no changed-path filter, uses no repository secrets,
+and needs no GPU. The same check also runs for main pushes and merge queues.
+
+Run it locally in a dedicated environment:
+
+```bash
+python -m pip install -r test/requirements-cpu.txt
+python -m pytest test --cpu-only --disable-socket --timeout=60 -ra
+```
+
+This installs lightweight test dependencies, not the full model environment.
+Pytest discovers all standard `test_*.py` / `*_test.py` modules under `test/`,
+including newly added modules. There is no allowlist of passing test modules.
+Unexpected skips (including missing-dependency skips) fail CPU mode. Per-test
+and job timeouts prevent a hanging test from satisfying the required check.
+Socket access is blocked during pytest tests; mocked HTTP transports still work.
+The workflow does not provide credentials or install torch/model checkpoints.
+
+The explicit exceptions in `test/conftest.py` are:
+
+| Case | Reason / CPU coverage |
+| --- | --- |
+| `test_pi3_llm.py` | A live VLM/reconstruction demo, not an offline unit test |
+| `test_tool.py` | CLI helpers with positional arguments; available mock paths run through `test_mock_cli.py`; Pi3/Pi3X/depth/segmentation/detection helpers hard-code live services |
+| `test_orient_anything_v2_tool.py` | CLI argument entry point; all three tasks run in mock mode through `test_mock_cli.py` |
+| Molmo2 live QA, Sana real service, Qwen Image Edit real API | Explicitly skipped in CPU mode, even if opt-in environment flags are set |
+| YOLO26 real detection | Requires local model weights; can use a CPU, but belongs to the opt-in real-inference lane |
+
+The Wan and QwenVL CLI demos are also exercised by in-process mock wrappers.
+VACE's mock reports a fixed video path without generating a video; its CLI test
+supplies an explicit file fixture and checks the output-copy behavior.
+`tool_ci_report.py` and `verify_all_tools.py` are reporting/diagnostic scripts,
+not pytest test modules; their permissive dependency skips do not constitute a
+passing assertion suite. Existing optional real-backend workflows remain available.
+
+To add a CPU test, create a normal pytest test under `test/`. It must run without
+weights, live services, credentials, or network access. For a new real-backend
+case, document the reason in the explicit CPU exclusion map and retain an
+opt-in execution path. Do not hide a failing CPU test behind a skip marker.
+
+Required branch check: **CPU tests required** (GitHub Actions). Main should require
+this check on an up-to-date branch and require pull requests. The workflow alone
+does not configure branch protection; that rule is managed in GitHub settings.
+
 # Test Directory
 
 Unit tests and integration smoke tests for SPAgent.

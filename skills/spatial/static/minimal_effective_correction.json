@@ -1,0 +1,40 @@
+{
+  "id": "minimal_effective_correction",
+  "version": 1,
+  "kind": "static",
+  "name": "Choose a minimal effective correction",
+  "when": "A spatial violation has been diagnosed and a legal correction must be chosen.",
+  "task_families": [
+    "spatialact_repair"
+  ],
+  "trigger_terms": [
+    "choose a correction",
+    "translate or rotate",
+    "repair pose",
+    "correction magnitude"
+  ],
+  "preconditions": [],
+  "procedure": [
+    "Determine which permitted pose component addresses the diagnosed problem.",
+    "Inspect clearance in the proposed direction using available evidence.",
+    "Change a limited number of pose parameters and inspect the outcome before escalating the correction."
+  ],
+  "verification": [
+    "The diagnosed violation decreases or disappears without an evident new violation."
+  ],
+  "failure_lessons": [
+    "Do not shrink or delete an object unless the task explicitly permits that operation."
+  ],
+  "required_capabilities": [
+    "observe_scene",
+    "edit_pose"
+  ],
+  "source_refs": [
+    "https://www.alphaxiv.org/pdf/2605.31148"
+  ],
+  "adaptation_notes": "Original bounded-edit procedure; legality is always controlled by the task action profile.",
+  "parent_skill_id": null,
+  "provenance_episode_ids": [],
+  "review_status": "reviewed",
+  "validation_status": "untested"
+}
