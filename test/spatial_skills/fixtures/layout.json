@@ -1,0 +1,6 @@
+{
+  "task_family": "sceneactbench_layout",
+  "task_text": "Compare render to the supplied reference and refine layout.",
+  "public_history_text": "Synthetic example for testing retrieval mechanics only.",
+  "available_capabilities": ["observe_scene", "edit_pose", "inspect_object", "render_scene"]
+}

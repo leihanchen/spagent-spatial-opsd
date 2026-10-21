@@ -1,0 +1,41 @@
+{
+  "id": "render_compare_refine",
+  "version": 1,
+  "kind": "static",
+  "name": "Render, compare and refine",
+  "when": "A constructed layout hypothesis is available for comparison with reference images.",
+  "task_families": [
+    "sceneactbench_layout"
+  ],
+  "trigger_terms": [
+    "render mismatch",
+    "compare render",
+    "refine layout",
+    "visual discrepancy"
+  ],
+  "preconditions": [],
+  "procedure": [
+    "Render the current construction using the supplied reference-camera settings when available.",
+    "Identify the most consequential visible mismatch and distinguish identity, position and orientation explanations.",
+    "Adjust a limited set of permitted pose parameters, then render and compare again."
+  ],
+  "verification": [
+    "The revised construction better explains available reference evidence without omitting objects or changing fixed sizes."
+  ],
+  "failure_lessons": [
+    "A plausible arrangement is not sufficient if it differs from the target; do not scale objects to fit projections."
+  ],
+  "required_capabilities": [
+    "observe_scene",
+    "render_scene",
+    "edit_pose"
+  ],
+  "source_refs": [
+    "https://www.alphaxiv.org/pdf/2607.22393"
+  ],
+  "adaptation_notes": "Original task-specific refinement card based on the official Layout workflow.",
+  "parent_skill_id": null,
+  "provenance_episode_ids": [],
+  "review_status": "reviewed",
+  "validation_status": "untested"
+}

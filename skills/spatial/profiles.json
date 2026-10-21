@@ -1,0 +1,7 @@
+{
+  "schema_version": 1,
+  "profiles": {
+    "spatialact_repair": {"capabilities": ["observe_scene", "edit_pose"]},
+    "sceneactbench_layout": {"capabilities": ["observe_scene", "edit_pose", "inspect_object", "render_scene"]}
+  }
+}

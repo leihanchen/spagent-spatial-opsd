@@ -1,0 +1,42 @@
+{
+  "id": "track_action_effects",
+  "version": 1,
+  "kind": "static",
+  "name": "Track action effects",
+  "when": "A scene operation has changed the available observations.",
+  "task_families": [
+    "spatialact_repair",
+    "sceneactbench_layout"
+  ],
+  "trigger_terms": [
+    "after the edit",
+    "updated scene",
+    "previous action",
+    "state change"
+  ],
+  "preconditions": [],
+  "procedure": [
+    "Record the edited object and the intended transformation in the public interaction history.",
+    "Compare the updated observation with the pre-edit observation, including nearby objects.",
+    "Base the next decision on the updated scene rather than the original arrangement."
+  ],
+  "verification": [
+    "The next proposed edit is consistent with the observed effect of the last action."
+  ],
+  "failure_lessons": [
+    "An executed command is not proof that its intended geometric effect occurred."
+  ],
+  "required_capabilities": [
+    "observe_scene",
+    "edit_pose"
+  ],
+  "source_refs": [
+    "https://www.alphaxiv.org/pdf/2605.31148",
+    "https://www.alphaxiv.org/pdf/2607.22393"
+  ],
+  "adaptation_notes": "Original operation-specific card based on closed-loop benchmark workflows.",
+  "parent_skill_id": null,
+  "provenance_episode_ids": [],
+  "review_status": "reviewed",
+  "validation_status": "untested"
+}

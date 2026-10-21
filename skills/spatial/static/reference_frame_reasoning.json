@@ -1,0 +1,43 @@
+{
+  "id": "reference_frame_reasoning",
+  "version": 1,
+  "kind": "static",
+  "name": "Reference-frame reasoning",
+  "when": "A direction or pose is ambiguous between image, camera and world coordinates.",
+  "task_families": [
+    "spatialact_repair",
+    "sceneactbench_layout"
+  ],
+  "trigger_terms": [
+    "reference frame",
+    "camera-relative",
+    "world-relative",
+    "left or right",
+    "world axes"
+  ],
+  "preconditions": [
+    "The task provides coordinate conventions or reference-view information."
+  ],
+  "procedure": [
+    "Identify the reference frame of the observation and the frame expected by the action.",
+    "Use supplied camera information or visible landmarks to relate directions before editing.",
+    "If the mapping remains ambiguous, inspect permitted evidence before committing to a pose change."
+  ],
+  "verification": [
+    "Check that the resulting visual direction agrees with the intended change."
+  ],
+  "failure_lessons": [
+    "Do not equate screen-left with a fixed world-axis direction."
+  ],
+  "required_capabilities": [
+    "observe_scene"
+  ],
+  "source_refs": [
+    "https://github.com/skill-3d/Skill-3D/blob/e379d643e9889f49cb19dd425ceee9ff00e9adee/skill3d/core/skill_normalization.py"
+  ],
+  "adaptation_notes": "Adapts Spatial Localization & Relation to scene-operation decisions; no perception-tool names copied.",
+  "parent_skill_id": null,
+  "provenance_episode_ids": [],
+  "review_status": "reviewed",
+  "validation_status": "untested"
+}

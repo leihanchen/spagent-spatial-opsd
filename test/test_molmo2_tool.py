@@ -41,8 +41,8 @@ def sample_image_path(tmp_path):
     return str(p)
 
 
-def test_molmo2_mock_qa(sample_image_path):
-    tool = Molmo2Tool(use_mock=True)
+def test_molmo2_legacy_qa_argument_returns_points(sample_image_path, tmp_path):
+    tool = Molmo2Tool(use_mock=True, output_dir=str(tmp_path))
     result = tool.call(
         image_path=sample_image_path,
         task="qa",
@@ -50,8 +50,9 @@ def test_molmo2_mock_qa(sample_image_path):
     )
 
     assert result["success"] is True
-    assert "generated_text" in result["result"]
-    assert result["result"]["task"] == "qa"
+    assert result["result"]["task"] == "point"
+    assert result["result"]["num_points"] >= 1
+    assert result["points"]
 
 
 def test_molmo2_mock_point(tmp_path, sample_image_path):

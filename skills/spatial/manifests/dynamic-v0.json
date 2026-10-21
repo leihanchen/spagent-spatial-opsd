@@ -1,0 +1,7 @@
+{
+  "schema_version": 1,
+  "library_version": "dynamic-v0",
+  "kind": "dynamic",
+  "profiles": "../profiles.json",
+  "cards": []
+}

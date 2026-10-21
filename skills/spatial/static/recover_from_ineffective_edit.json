@@ -1,0 +1,40 @@
+{
+  "id": "recover_from_ineffective_edit",
+  "version": 1,
+  "kind": "static",
+  "name": "Recover from ineffective edits",
+  "when": "Repeated pose changes fail to resolve the diagnosed error or alternate between failures.",
+  "task_families": [
+    "spatialact_repair"
+  ],
+  "trigger_terms": [
+    "repeated edit",
+    "oscillation",
+    "still unresolved",
+    "ineffective edit"
+  ],
+  "preconditions": [],
+  "procedure": [
+    "Compare recent actions and observations to identify repetition or reversal.",
+    "Reconsider the error type, edited object and transformation direction.",
+    "Seek missing permitted evidence, then try a different limited correction; restore an earlier pose only if the interface permits it."
+  ],
+  "verification": [
+    "The revised action changes the failure pattern rather than repeating it."
+  ],
+  "failure_lessons": [
+    "Do not assume every task supports a free undo or independent candidate trials."
+  ],
+  "required_capabilities": [
+    "observe_scene",
+    "edit_pose"
+  ],
+  "source_refs": [
+    "https://www.alphaxiv.org/pdf/2605.31148"
+  ],
+  "adaptation_notes": "Original recovery card; hypothetical lessons require future execution validation.",
+  "parent_skill_id": null,
+  "provenance_episode_ids": [],
+  "review_status": "reviewed",
+  "validation_status": "untested"
+}

@@ -1,0 +1,42 @@
+{
+  "id": "select_informative_evidence",
+  "version": 1,
+  "kind": "static",
+  "name": "Select informative evidence",
+  "when": "The current observations support more than one spatial interpretation.",
+  "task_families": [
+    "spatialact_repair",
+    "sceneactbench_layout"
+  ],
+  "trigger_terms": [
+    "occlusion",
+    "ambiguous view",
+    "uncertain depth",
+    "inspect evidence"
+  ],
+  "preconditions": [
+    "Use only observations and inspection operations permitted by this task."
+  ],
+  "procedure": [
+    "State which uncertainty prevents the next decision: identity, position, orientation or visibility.",
+    "Compare the supplied views that best distinguish the alternatives; request an additional current-scene view only when the interface permits it.",
+    "Use new evidence to revise the interpretation before repeating the same edit."
+  ],
+  "verification": [
+    "The selected evidence addresses the stated uncertainty."
+  ],
+  "failure_lessons": [
+    "A new render of the constructed scene is not a new observation of a hidden reference target."
+  ],
+  "required_capabilities": [
+    "observe_scene"
+  ],
+  "source_refs": [
+    "https://github.com/skill-3d/Skill-3D/blob/e379d643e9889f49cb19dd425ceee9ff00e9adee/skill3d/core/skill_normalization.py"
+  ],
+  "adaptation_notes": "Adapts Multi-view Verification & Occlusion and Comprehensive Scene Understanding; does not require Pi3.",
+  "parent_skill_id": null,
+  "provenance_episode_ids": [],
+  "review_status": "reviewed",
+  "validation_status": "untested"
+}

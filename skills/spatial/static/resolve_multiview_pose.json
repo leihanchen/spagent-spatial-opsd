@@ -1,0 +1,42 @@
+{
+  "id": "resolve_multiview_pose",
+  "version": 1,
+  "kind": "static",
+  "name": "Resolve pose using reference views",
+  "when": "Several positions or yaw orientations could explain one reference projection.",
+  "task_families": [
+    "sceneactbench_layout"
+  ],
+  "trigger_terms": [
+    "pose ambiguity",
+    "multiview",
+    "multi-view",
+    "yaw ambiguity",
+    "reference cameras"
+  ],
+  "preconditions": [],
+  "procedure": [
+    "Relate the supplied reference views using their available camera information.",
+    "Compare object position, scale in projection, occlusion and distinctive features across those views.",
+    "Choose a pose that explains the available references jointly, preserving fixed asset size and task-permitted rotation."
+  ],
+  "verification": [
+    "A pose improvement in one view does not create an unexplained mismatch in another."
+  ],
+  "failure_lessons": [
+    "With a single reference view, preserve uncertainty rather than inventing hidden target views."
+  ],
+  "required_capabilities": [
+    "observe_scene",
+    "edit_pose"
+  ],
+  "source_refs": [
+    "https://github.com/skill-3d/Skill-3D/blob/e379d643e9889f49cb19dd425ceee9ff00e9adee/skill3d/core/skill_normalization.py",
+    "https://www.alphaxiv.org/pdf/2607.22393"
+  ],
+  "adaptation_notes": "Adapts Multi-view Verification & Occlusion for pose estimation without external reconstruction tools.",
+  "parent_skill_id": null,
+  "provenance_episode_ids": [],
+  "review_status": "reviewed",
+  "validation_status": "untested"
+}

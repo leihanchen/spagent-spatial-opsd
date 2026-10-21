@@ -12,6 +12,8 @@ import unittest
 from pathlib import Path
 from unittest.mock import MagicMock, patch
 
+from PIL import Image
+
 project_root = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(project_root))
 
@@ -64,16 +66,15 @@ class TestMolmo2Client(unittest.TestCase):
 
 class TestMolmo2Tool(unittest.TestCase):
     def test_tool_mock_call(self):
-        with tempfile.NamedTemporaryFile(suffix=".jpg", delete=False) as f:
-            f.write(b"\xff\xd8\xff\xd9")
-            path = f.name
-        try:
-            t = Molmo2Tool(use_mock=True)
-            r = t.call(path, prompt="Describe")
-            self.assertTrue(r.get("success"))
-            self.assertIn("text", r)
-        finally:
-            Path(path).unlink(missing_ok=True)
+        with tempfile.TemporaryDirectory() as tmp:
+            path = str(Path(tmp) / "input.jpg")
+            Image.new("RGB", (64, 48), color=(90, 120, 60)).save(path)
+            tool = Molmo2Tool(use_mock=True, output_dir=tmp)
+            result = tool.call(path, prompt="Point to the object")
+            self.assertTrue(result.get("success"), result)
+            self.assertEqual(result["result"]["task"], "point")
+            self.assertGreater(result["result"]["num_points"], 0)
+            self.assertTrue(Path(result["output_path"]).is_file())
 
 
 if __name__ == "__main__":

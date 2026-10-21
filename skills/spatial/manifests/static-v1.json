@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "library_version": "static-v1",
+  "kind": "static",
+  "profiles": "../profiles.json",
+  "cards": [
+    "../static/reference_frame_reasoning.json",
+    "../static/select_informative_evidence.json",
+    "../static/track_action_effects.json",
+    "../static/diagnose_spatial_error.json",
+    "../static/minimal_effective_correction.json",
+    "../static/repair_without_regression.json",
+    "../static/recover_from_ineffective_edit.json",
+    "../static/match_objects_and_anchors.json",
+    "../static/resolve_multiview_pose.json",
+    "../static/render_compare_refine.json"
+  ]
+}
